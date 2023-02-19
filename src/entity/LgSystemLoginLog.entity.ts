@@ -1,4 +1,4 @@
-import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, Index, PrimaryGeneratedColumn, Timestamp } from "typeorm";
 
 @Index("system_login_log_username_index", ["username"], {})
 @Entity("lg_system_login_log", { schema: "mineadmin" })
@@ -61,8 +61,8 @@ export class LgSystemLoginLog {
   })
   message: string | null;
 
-  @Column("timestamp", { name: "login_time", comment: "登录时间" })
-  loginTime:  string;
+  @Column("timestamp", { name: "login_time", comment: "登录时间",nullable: true })
+  loginTime:  Date;
 
   @Column("varchar", {
     name: "remark",

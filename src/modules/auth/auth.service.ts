@@ -16,7 +16,7 @@ export class AuthService {
       ){
     }
 
-   async validateUser(username:string ,password :string) :Promise <any> {
+    async validateUser(username:string ,password :string) :Promise <any> {
         const user = await this.userService.findOne(username);
 
         if(user && user.password == password){
@@ -24,15 +24,17 @@ export class AuthService {
             return result;
         }
         return null;
-   }
-    async afterLogin(userinfo){
-        //add loginlog
-        this.loginLogService.addLog(userinfo);
+    }
+    async afterLogin(userinfo,req){
+        //add loginlog     
+        this.loginLogService.addLog(userinfo,req);
         
     }
+    
     //sglb admin123
     //login server
-    async login(user: any) {
+    async login(req) {
+        const user = req.body
         console.log(user,'输入参数')
       
         try {
@@ -44,7 +46,7 @@ export class AuthService {
             if( this.userService.passwordVerify(user.password , password) ){
                   if( userinfo.status == 1){
                       const payload = {username: userinfo.username, sub: userinfo.id};
-                      this.afterLogin(userinfo);
+                      await this.afterLogin(userinfo,req);
                       return {
                           code : 200,
                           data : {

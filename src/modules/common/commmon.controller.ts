@@ -1,9 +1,10 @@
 import { Controller, Get, Post, Request, UseGuards,Headers, Body, Query, Param, UseInterceptors, HttpException, HttpStatus } from '@nestjs/common';
 import { LoginLogService } from '../loginlog/loginlog.service';
-
+import { AuthGuard } from '@nestjs/passport';
 
 
 @Controller('/system/common')
+@UseGuards(AuthGuard('jwt'))
 export class commonController {
 
     constructor(
@@ -14,7 +15,6 @@ export class commonController {
     async getLoginLogList(@Request() req){
         req.query.page = 1;
         const logList = await this.loginLogService.getLogList(req);
-        console.log(logList)
         return{
             code :  HttpStatus.OK,
             message : '成功',
@@ -37,7 +37,7 @@ export class commonController {
                      total :0,
                      totalPage :1,
                  }
-            } 
+            }  
          }
     }
     @Get('/getNoticeList')
