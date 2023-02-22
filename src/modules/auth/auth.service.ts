@@ -48,12 +48,7 @@ export class AuthService {
                       const payload = {username: userinfo.username, sub: userinfo.id};
                       await this.afterLogin(userinfo,req);
                       return {
-                          code : 200,
-                          data : {
-                            token :this.jwtService.sign(payload)
-                          },
-                          message : '成功',
-                          success : true
+                            token :this.jwtService.sign(payload)                         
                       };
                   }else{
 

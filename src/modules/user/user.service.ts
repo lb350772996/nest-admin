@@ -41,25 +41,8 @@ export class UsersService {
   async findOne(id: any)  {
     const { name } = id;
     const u  = await this.usersRepository.createQueryBuilder('user') 
-    .where('user.id=2').getOneOrFail();
-    // let all  =this.findAll();
-    // console.log(all)
-    // console.log(u)
-    // const dataSource = new DataSource();
-    // dataSource.manager.save(User);
-    // const c = await getRepository(User).findOne({where:{
-    //   name:'sc'
-    // }});
+    .where('user.id=:id',{id:id}).getOneOrFail();
     return  u ;
-    // var s = this.usersRepository.find({
-    //   where:{
-    //     name:'sc'
-    //   }
-    // });
-    // console.log(s[id])
-    // return s ;
-    // GetRepository
-    // return this.usersRepository.findOne({where:name});
   }
 
   async remove(id: string): Promise<void> {

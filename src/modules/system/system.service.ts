@@ -31,11 +31,7 @@ export class SystemService {
             res['codes'] =['*'];
         }
         return {
-            code :200,
-            message :'请求成功',
-            success : true,
-            data : res
-
+            res
         }
         // console.log(userinfo,'userid')
         // return {user};
