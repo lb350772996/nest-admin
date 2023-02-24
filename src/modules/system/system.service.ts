@@ -30,9 +30,8 @@ export class SystemService {
             res['routers'] = await this.sysMenuService.getSuperAdminRouters();
             res['codes'] =['*'];
         }
-        return {
-            res
-        }
+        return res
+        
         // console.log(userinfo,'userid')
         // return {user};
     }

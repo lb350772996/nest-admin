@@ -32,6 +32,11 @@ export class UsersService {
   async  checkUserByUsername(userName:string) {
     return await this.usersRepository.createQueryBuilder('u').where("u.username= :username",{username:userName}).getOneOrFail();
   }
+
+  async update(){
+    
+  }
+
   async isSuperAdmin(id:string){
     if(id == '1' || id =='2'){
       return true;

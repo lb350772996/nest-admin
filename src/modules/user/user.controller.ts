@@ -1,28 +1,27 @@
 import { Controller, Get , Query,Headers } from '@nestjs/common';
 import { Post, UseGuards,Request } from '@nestjs/common/decorators';
 import { AuthGuard } from '@nestjs/passport/dist';
+import { BaseController } from '../base/base.controller';
 import { UsersService } from './user.service';
 
 
-@Controller('/user')
-export class UserController {
+@Controller('/system/user')
+export class UserController extends BaseController {
     constructor(
         private readonly userService :UsersService,
         // private ro
-        ){}
+        ){
+            super();
+        }
 
-    @Get()
-    getAll(@Query(){id},@Headers('token') token){
-        console.log('token',token);
-        // console.log(this.userService.findOne(1))
-       var s = this.userService.findOne('sc');
-    //    console.log(s.id);
-       return s;
-    }
+  
 
     // @UseGuards(AuthGuard('local'))
-    @Post('login')
-    async login(@Request() req) {
-        return req.user
+    @Post('updateInfo')
+    async updateInfo(@Request() req) {
+        // this.userService.
+        this.consoleLog(req.body)
     }
+
+
 }

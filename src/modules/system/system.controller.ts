@@ -14,4 +14,5 @@ export class systemController {
         // this.systemService.getInfo('1');
         return 123;
     }
+
 }
