@@ -16,11 +16,10 @@ export class UserController extends BaseController {
 
   
 
-    // @UseGuards(AuthGuard('local'))
+    @UseGuards(AuthGuard('jwt'))
     @Post('updateInfo')
     async updateInfo(@Request() req) {
-        // this.userService.
-        this.consoleLog(req.body)
+        this.userService.update(req.user.userId,req.body);
     }
 
 
